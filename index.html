@@ -449,12 +449,11 @@ body{display:block!important}
 </div>
 
 </div>
-
 <div class="dashboard">
-  <div class="dashboard-card">
-    <div class="card-title">Total Patients</div>
-    <div class="card-number" id="totalPatients">0</div>
-  </div>
+    <div class="dashboard-card">
+        <div class="card-title">Total Patients</div>
+        <div class="card-number" id="totalPatients">0</div>
+    </div>
 </div>
 
 <br>
@@ -551,38 +550,44 @@ Antipolo City Health Office ECG Services <br>Coded by: Erwin R. Alincastre. All 
 
 </div>
 <script>
-const scriptURL="https://script.google.com/macros/s/AKfycbx8d9ARgx_R9oeOFKhNBUuzFTzjByAMSzVVQOye32atP4jS0KyXegkT69-jbzEv_P9r/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbx8d9ARgx_R9oeOFKhNBUuzFTzjByAMSzVVQOye32atP4jS0KyXegkT69-jbzEv_P9r/exec";
 
-document.getElementById("patientForm").addEventListener("submit",e=>{
+function loadTotalPatients() {
+    fetch(scriptURL)
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("totalPatients").textContent = data.total;
+        })
+        .catch(error => console.log(error));
+}
 
-e.preventDefault();
+// Load count when page opens
+loadTotalPatients();
 
-fetch(scriptURL,{
-method:"POST",
-body:new FormData(document.getElementById("patientForm"))
-})
-.then(response=>{
-alert("Patient record saved successfully.");
-document.getElementById("patientForm").reset();
-})
-.catch(error=>{
-alert("Error saving data.");
+document.getElementById("patientForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    fetch(scriptURL,{
+        method:"POST",
+        body:new FormData(this)
+    })
+    .then(response => response.text())
+    .then(result => {
+
+        alert("Patient record saved successfully.");
+
+        document.getElementById("patientForm").reset();
+
+        // Refresh the counter
+        loadTotalPatients();
+
+    })
+    .catch(error=>{
+        alert("Error saving data.");
+    });
+
 });
-
-});
-
 </script>
-<script>
-fetch(scriptURL + "?action=count")
-  .then(response => response.text())
-  .then(total => {
-      console.log("Returned from Apps Script:", "[" + total + "]");
-      document.getElementById("totalPatients").textContent = total.trim();
-  })
-  .catch(error => {
-      console.error("Fetch error:", error);
-  });
-</script>
-
 </body>
 </html>
