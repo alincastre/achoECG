@@ -574,14 +574,14 @@ alert("Error saving data.");
 </script>
 <script>
 fetch(scriptURL + "?action=count")
-.then(res => res.text())
-.then(total => {
-    console.log("Count returned:", total);
-    document.getElementById("totalPatients").textContent = total;
-})
-.catch(err => {
-    console.log(err);
-});
+  .then(response => response.text())
+  .then(total => {
+      console.log("Returned from Apps Script:", "[" + total + "]");
+      document.getElementById("totalPatients").textContent = total.trim();
+  })
+  .catch(error => {
+      console.error("Fetch error:", error);
+  });
 </script>
 
 </body>
