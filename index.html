@@ -1,14 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Antipolo City Health Office ECG Services</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 
 *{
@@ -411,8 +408,6 @@ font-weight:500;
 }
 
 </style>
-
-
 <style id="chatgpt-responsive-patch">
 html{font-size:16px}
 img{max-width:100%;height:auto}
@@ -431,65 +426,73 @@ gap:12px!important}
 input,select,textarea,button{width:100%!important;font-size:16px}
 }
 </style>
-
-
 <style>
 body{display:block!important}
 .sidebar{display:none!important}
 .main,.main-content{margin-left:0!important;width:100%!important}
 </style>
-</head>
-
+<style>
+.header-content{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:16px;
+flex-wrap:wrap;
+}
+.header-logo{
+width:70px;
+height:auto;
+flex:0 0 auto;
+}
+.header-title{
+font-size:24px;
+font-weight:600;
+text-align:center;
+}
+@media(max-width:768px){
+.header-content{gap:10px;}
+.header-logo{width:50px;}
+.header-title{font-size:20px;}
+}
+</style></head>
 <body>
-
 <div class="main-content">
-
 <div class="header">
- 🖨 Antipolo City Health Office ECG Services
+<div class="header-content">
+<img alt="Logo 1" class="header-logo" src="https://www.image2url.com/r2/default/images/1782022944770-7a8e4b4c-a5a6-4f1b-b164-aa1d514db85e.png"/>
+<div class="header-title">🖨 Antipolo City Health Office ECG Services</div>
+<img alt="Logo 2" class="header-logo" src="https://www.image2url.com/r2/default/images/1782022901500-ad384d18-f457-4dfe-8fe2-aa6500d3d910.png"/>
 </div>
-
+</div>
 </div>
 <div class="dashboard">
-    <div class="dashboard-card">
-        <div class="card-title">Total ECG Patients Served</div>
-        <div id="totalPatients" class="card-number">0</div>
-    </div>
+<div class="dashboard-card">
+<div class="card-title">Total ECG Patients Served</div>
+<div class="card-number" id="totalPatients">0</div>
 </div>
-
-<br>
-
-
 </div>
+<br/>
 
-<br>
-
+<br/>
 <div class="container">
-
 <div class="card">
-
 <form id="patientForm">
-
 <div class="section-title">
 Patient Information
 </div>
-
 <div class="form-grid">
-
 <div class="form-group">
-<label>Date & Time</label>
-<input type="datetime-local" name="datetime" required>
+<label>Date &amp; Time</label>
+<input name="datetime" required="" type="datetime-local"/>
 </div>
-
 <div class="form-group">
 <label>Full Name</label>
-<input type="text" name="fullname" required>
+<input name="fullname" required="" type="text"/>
 </div>
-
 <div class="form-group">
 <label>Age</label>
-<input type="number" name="age" required>
+<input name="age" required="" type="number"/>
 </div>
-
 <div class="form-group">
 <label>Gender</label>
 <select name="gender">
@@ -497,12 +500,10 @@ Patient Information
 <option>Female</option>
 </select>
 </div>
-
 <div class="form-group">
 <label>Address</label>
-<input type="text" name="address">
+<input name="address" type="text"/>
 </div>
-
 <div class="form-group">
 <label>Baranggay</label>
 <select name="barangay">
@@ -525,35 +526,25 @@ Patient Information
 <option>Other</option>
 </select>
 </div>
-
-
 <div class="form-group">
 <label>Contact Number</label>
-<input type="text" name="contact">
+<input name="contact" type="text"/>
 </div>
-
-
 <div class="form-group">
 <label>Requesting Physician</label>
-<input type="text" name="doctor">
+<input name="doctor" type="text"/>
 </div>
 </div>
-
 <button type="submit">
 Save Patient Record
 </button>
-
 </form>
-
 </div>
-
 </div>
-
 <div class="footer">
-Antipolo City Health Office ECG Services <br>Coded by: Erwin R. Alincastre. All Rights Reserved.
+Antipolo City Health Office ECG Services <br/>Coded by: Erwin R. Alincastre. All Rights Reserved.
 </div>
 
-</div>
 <script>
 const scriptURL = "https://script.google.com/macros/s/AKfycby6Ep-Nuf-LFcTusVwTRsGqtf9NUSw1q1N1tNkL8j3HfvTYaKSgWTpJNYkJtfSKiaQm/exec";
 
