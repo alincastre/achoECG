@@ -552,42 +552,68 @@ Antipolo City Health Office ECG Services <br>Coded by: Erwin R. Alincastre. All 
 
 </div>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbwG5KcoAB_WAZgReZKG7ZZEem4sWkKakkXnlewXNehQHVgOLkMvUELwpcBN8MJqoYNa/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxch8M6--VyOmbwc--qephK8F7NvvMWKmBsOckzrPGUsif6RfCHZr-FAAsw_oJLmy-Y/exec";
 
-function loadTotalPatients() {
-    fetch(scriptURL)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("totalPatients").textContent = data.total;
-        })
-        .catch(error => console.log(error));
+// Load Total Patients
+async function loadTotalPatients() {
+    try {
+        const response = await fetch(scriptURL + "?nocache=" + Date.now());
+        const data = await response.json();
+
+        document.getElementById("totalPatients").textContent = data.total;
+
+    } catch (err) {
+        console.log(err);
+    }
 }
 
-// Load count when page opens
+// Auto refresh every 3 seconds
+setInterval(loadTotalPatients, 3000);
+
+// Load immediately
 loadTotalPatients();
 
-document.getElementById("patientForm").addEventListener("submit", function(e){
+// Save Patient
+document.getElementById("patientForm").addEventListener("submit", async function(e){
 
     e.preventDefault();
 
-    fetch(scriptURL,{
-        method:"POST",
-        body:new FormData(this)
-    })
-    .then(response => response.text())
-    .then(result => {
+    const btn = this.querySelector("button");
+    btn.disabled = true;
+    btn.innerHTML = "Saving...";
 
-        alert("Patient record saved successfully.");
+    try{
 
-        document.getElementById("patientForm").reset();
+        const response = await fetch(scriptURL,{
+            method:"POST",
+            body:new FormData(this)
+        });
 
-        // Refresh the counter
-        loadTotalPatients();
+        const result = await response.text();
 
-    })
-    .catch(error=>{
-        alert("Error saving data.");
-    });
+        if(result=="Success"){
+
+            alert("Patient record saved successfully.");
+
+            this.reset();
+
+            // Update counter immediately
+            await loadTotalPatients();
+
+        }else{
+
+            alert(result);
+
+        }
+
+    }catch(err){
+
+        alert("Unable to save patient.");
+
+    }
+
+    btn.disabled=false;
+    btn.innerHTML="Save Patient Record";
 
 });
 </script>
