@@ -358,7 +358,7 @@ font-size:72px;
 
 font-weight:bold;
 
-color:#0B6E4F;
+color:#ef0937;
 
 margin:20px 0;
 
@@ -449,8 +449,14 @@ body{display:block!important}
 </div>
 
 </div>
-
+<div class="dashboard">
+    <div class="dashboard-card">
+        <div class="card-title">Total ECG Patients Served</div>
+        <div id="totalPatients" class="card-number">0</div>
+    </div>
 </div>
+
+<br>
 
 <br>
 
@@ -546,7 +552,7 @@ Antipolo City Health Office ECG Services <br>Coded by: Erwin R. Alincastre. All 
 
 </div>
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbx8d9ARgx_R9oeOFKhNBUuzFTzjByAMSzVVQOye32atP4jS0KyXegkT69-jbzEv_P9r/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwG5KcoAB_WAZgReZKG7ZZEem4sWkKakkXnlewXNehQHVgOLkMvUELwpcBN8MJqoYNa/exec";
 
 function loadTotalPatients() {
     fetch(scriptURL)
@@ -585,5 +591,6 @@ document.getElementById("patientForm").addEventListener("submit", function(e){
 
 });
 </script>
+
 </body>
 </html>
